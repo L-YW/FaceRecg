@@ -29,17 +29,17 @@ void detect_face(){
     for(Rect rc : faces){
         rectangle(src, rc, Scalar(255, 0, 255), 2);
     }
-    // if(faces!='\n'){
-    //     print("0314228071\n");
-    // }
-    // else
-    // {
-    //     print("0314208071\n");
-    // }
+    if(faces.size() == 0){
+        printf("0314228071\n");
+    }
+    else
+    {
+        printf("0314208071\n");
+    }
     
-    imshow("src", src);
-    waitKey();
-    destroyAllWindows();
+    // imshow("src", src);
+    // waitKey();
+    // destroyAllWindows();
 }
 
 int main(){
