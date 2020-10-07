@@ -13,7 +13,7 @@
 using namespace std;
 using namespace cv;
 
-char serc[15] = "0314228071";
+char serc[15] = "0314218071";
 
 char detect_face(){
     int ser;
@@ -39,11 +39,11 @@ char detect_face(){
     }
     
     if(faces.size() == 0){
-        serc[5] = '2';
+        serc[5] = '0';
     }
     else
     {
-        serc[5] = '0';
+        serc[5] = '2';
     }
 }
 int main(){

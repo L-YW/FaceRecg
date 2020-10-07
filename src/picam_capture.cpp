@@ -9,6 +9,7 @@
 #include <wiringSerial.h>
 #include <wiringPi.h>
 
+#include <time.h>
 #include <string.h>
 #include <stdio.h>
 using namespace std;
@@ -18,9 +19,11 @@ using namespace cv;
 
 
 int main(){
-    char serc[15] = "0314228071";
+    char serc[15] = "0314218071";
     raspicam::RaspiCam_Cv Camera;
-    Mat image;
+    Mat src;
+    clock_t start, end;
+    float result;
  
     Camera.set( CV_CAP_PROP_FORMAT, CV_8UC3);
     Camera.set( CV_CAP_PROP_FRAME_WIDTH, 320 ); //320*240
@@ -28,22 +31,22 @@ int main(){
  
  
     if (!Camera.open()) {cerr<<"Error opening the camera"<<endl;return -1;}
-    int fd;
-    if((fd=serialOpen("/dev/ttyAMA0", BAUD)) < 0){
-        printf("Device file open error!! use sudo ...\n");
-        return 1;
-    } 
+    // int fd;
+    // if((fd=serialOpen("/dev/ttyAMA0", BAUD)) < 0){
+    //     printf("Device file open error!! use sudo ...\n");
+    //     return 1;
+    // } 
     while(1){
 
         Camera.grab();
-        Camera.retrieve (image);
+        Camera.retrieve (src);
  
         //cvtColor(image, image, cv::COLOR_BGR2RGB);
  
-        // imshow( "picamera test", image );
+        imshow( "picamera test", src );
         
         
-        Mat src = Camera.read(image);
+        // Mat src = imread(image);
         if(src.empty()){
             printf("Image load failed!\n");
             return 1;
@@ -57,20 +60,22 @@ int main(){
         }
 
         vector<Rect> faces;
-        classifier.detectMultiScale(src, faces); // +0.1
+        double s_factor = 2.4;
+        start = clock();
+        classifier.detectMultiScale(src, faces, s_factor); // +0.1
+        end = clock();
+        // for(Rect rc : faces){
+        //     rectangle(src, rc, Scalar(255, 0, 255), 2);
+        // }            
 
-        for(Rect rc : faces){
-            rectangle(src, rc, Scalar(255, 0, 255), 2);
-        }            
-
-        if(faces.size() == 0){
+        if(faces.size() != 0){
             serc[5] = '2';
         }
         else
         {
             serc[5] = '0';
         }
-        printf("%s\n", serc);
+        printf("%.1f, %s, %.2f\n", s_factor, serc, ((float)(end-start)/CLOCKS_PER_SEC));
         // serialPuts(fd, serc);
         // serialPutchar(fd, '\r');
         // serialPutchar(fd, '\n');
