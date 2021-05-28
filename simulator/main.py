@@ -15,8 +15,6 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 #QAction은 메뉴바에서 특정 항목을 선택하여 그 내부 그룹의 내용들이 어떤 행동을 하도록 만든다.
 from PyQt5.QtWidgets import QApplication, QMainWindow, QAction, QMenu, QTextEdit, QFileDialog, QTextBrowser
 from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QIcon
-from PyQt5.Qt import QColor
 from PyQt5.QtCore import *
 import numpy as np
 import sys
@@ -28,8 +26,10 @@ from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as Canvas
 import matplotlib
 from PIL import ImageGrab
-import time
-from pynput.mouse import Button, Controller
+
+
+import inspection
+ic = inspection.inspection()
 
 #Ensure using PyQt5 backend
 matplotlib.use('QT5Agg')
@@ -130,17 +130,42 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.pushButton_repeat = QtWidgets.QPushButton(self.ButtonBox)
         self.pushButton_repeat.setGeometry(QtCore.QRect(10, 210, 91, 91))
         self.pushButton_repeat.setObjectName("pushButton_Repeat")
-        #radio button
-        self.radioButton_Iterative = QtWidgets.QRadioButton(self.learningGroupBox)
-        self.radioButton_Iterative.setGeometry(QtCore.QRect(10, 15, 161, 21))
-        self.radioButton_Iterative.setObjectName("radioButton_Iterative")
-        self.radioButton_Iterative.setProperty("checked", True)
-        # self.radioButton_DeepRBF = QtWidgets.QRadioButton(self.learningGroupBox)
-        # self.radioButton_DeepRBF.setGeometry(QtCore.QRect(10, 60, 90, 16))
-        # self.radioButton_DeepRBF.setObjectName("radioButton_DeepRBF")
-        self.radioButton_WriteAllSamples = QtWidgets.QRadioButton(self.learningGroupBox)
-        self.radioButton_WriteAllSamples.setGeometry(QtCore.QRect(10, 80, 141, 16))
-        self.radioButton_WriteAllSamples.setObjectName("radioButton_WriteAllSamples")
+
+        ### radio button ###
+        # learning options
+        self.radioButton_learning1 = QtWidgets.QRadioButton(self.learningGroupBox)
+        self.radioButton_learning1.setGeometry(QtCore.QRect(10, 20, 161, 21))
+        self.radioButton_learning1.setObjectName("radioButton_Classify1")
+        self.radioButton_learning1.setProperty("checked", True)
+        self.radioButton_learning2 = QtWidgets.QRadioButton(self.learningGroupBox)
+        self.radioButton_learning2.setGeometry(QtCore.QRect(10, 40, 161, 21))
+        self.radioButton_learning2.setObjectName("radioButton_Classify2")
+        self.radioButton_learning3 = QtWidgets.QRadioButton(self.learningGroupBox)
+        self.radioButton_learning3.setGeometry(QtCore.QRect(10, 60, 161, 21))
+        self.radioButton_learning3.setObjectName("radioButton_Classify3")
+        self.radioButton_learning4 = QtWidgets.QRadioButton(self.learningGroupBox)
+        self.radioButton_learning4.setGeometry(QtCore.QRect(10, 80, 161, 21))
+        self.radioButton_learning4.setObjectName("radioButton_Classify4")
+        self.radioButton_learning5 = QtWidgets.QRadioButton(self.learningGroupBox)
+        self.radioButton_learning5.setGeometry(QtCore.QRect(10, 100, 161, 21))
+        self.radioButton_learning5.setObjectName("radioButton_Classify5")
+        self.radioButton_learning6 = QtWidgets.QRadioButton(self.learningGroupBox)
+        self.radioButton_learning6.setGeometry(QtCore.QRect(10, 120, 161, 21))
+        self.radioButton_learning6.setObjectName("radioButton_Classify6")
+        self.radioButton_learning7 = QtWidgets.QRadioButton(self.learningGroupBox)
+        self.radioButton_learning7.setGeometry(QtCore.QRect(10, 140, 161, 21))
+        self.radioButton_learning7.setObjectName("radioButton_Classify7")
+        self.radioButton_learning8 = QtWidgets.QRadioButton(self.learningGroupBox)
+        self.radioButton_learning8.setGeometry(QtCore.QRect(10, 160, 161, 21))
+        self.radioButton_learning8.setObjectName("radioButton_Classify8")
+        self.radioButton_learning9 = QtWidgets.QRadioButton(self.learningGroupBox)
+        self.radioButton_learning9.setGeometry(QtCore.QRect(10, 180, 161, 21))
+        self.radioButton_learning9.setObjectName("radioButton_Classify9")
+        self.radioButton_learning10 = QtWidgets.QRadioButton(self.learningGroupBox)
+        self.radioButton_learning10.setGeometry(QtCore.QRect(10, 200, 161, 21))
+        self.radioButton_learning10.setObjectName("radioButton_Classify10")
+
+        # inspection options
         self.radioButton_Classify1=QtWidgets.QRadioButton(self.classificationGroupBox)
         self.radioButton_Classify1.setGeometry(QtCore.QRect(10, 20, 220, 16))
         self.radioButton_Classify1.setObjectName("radioButton_Classify1")
@@ -166,38 +191,20 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.radioButton_Classify8 = QtWidgets.QRadioButton(self.classificationGroupBox)
         self.radioButton_Classify8.setGeometry(QtCore.QRect(10, 160, 220, 16))
         self.radioButton_Classify8.setObjectName("radioButton_Classify8")
+        self.radioButton_Classify9 = QtWidgets.QRadioButton(self.classificationGroupBox)
+        self.radioButton_Classify9.setGeometry(QtCore.QRect(10, 180, 220, 16))
+        self.radioButton_Classify9.setObjectName("radioButton_Classify9")
+        self.radioButton_Classify10 = QtWidgets.QRadioButton(self.classificationGroupBox)
+        self.radioButton_Classify10.setGeometry(QtCore.QRect(10, 200, 220, 16))
+        self.radioButton_Classify10.setObjectName("radioButton_Classify10")
         #spin box
         self.spinBox_SimuNMnK = QtWidgets.QSpinBox(self.StatusBox)
         self.spinBox_SimuNMnK.setGeometry(QtCore.QRect(150, 200, 42, 22))
         self.spinBox_SimuNMnK.setProperty("value", 1)
         self.spinBox_SimuNMnK.setObjectName("spinBox_SimuNMnK")
-        self.spinBox_Iter = QtWidgets.QSpinBox(self.learningGroupBox)
-        self.spinBox_Iter.setGeometry(QtCore.QRect(110, 40, 42, 16))
-        self.spinBox_Iter.setObjectName("spinBox_Iter")
-        self.spinBox_maxif = QtWidgets.QSpinBox(self.learningGroupBox)
-        self.spinBox_maxif.setGeometry(QtCore.QRect(80, 120, 81, 22))
-        self.spinBox_maxif.setMaximum(16384)
-        self.spinBox_maxif.setMinimum(2)
-        self.spinBox_maxif.setProperty("value", 16384)
-        self.spinBox_maxif.setObjectName("spinBox_maxif")
-        self.spinBox_minif = QtWidgets.QSpinBox(self.learningGroupBox)
-        self.spinBox_minif.setGeometry(QtCore.QRect(80, 150, 81, 22))
-        self.spinBox_minif.setMaximum(16384)
-        self.spinBox_minif.setMinimum(2)
-        self.spinBox_minif.setProperty("value", 2)
-        self.spinBox_minif.setObjectName("spinBox_minif")
-        self.spinBox_Kvalue = QtWidgets.QSpinBox(self.classificationGroupBox)
-        self.spinBox_Kvalue.setGeometry(QtCore.QRect(40, 180, 42, 22))
-        self.spinBox_Kvalue.setProperty("value", 3)
-        self.spinBox_Kvalue.setObjectName("spinBox_Kvalue")
-        self.spinBox_MinConsensus = QtWidgets.QSpinBox(self.classificationGroupBox)
-        self.spinBox_MinConsensus.setGeometry(QtCore.QRect(175, 80, 30, 16))
-        self.spinBox_MinConsensus.setProperty("value", 2)
-        self.spinBox_MinConsensus.setObjectName("spinBox_MinConsensus")
-        self.spinBox_MinConsensus2 = QtWidgets.QSpinBox(self.classificationGroupBox)
-        self.spinBox_MinConsensus2.setGeometry(QtCore.QRect(175, 160, 30, 16))
-        self.spinBox_MinConsensus2.setProperty("value", 2)
-        self.spinBox_MinConsensus2.setObjectName("spinBox_MinConsensus2")
+
+
+
         #log text browser
         self.logBrowser = QtWidgets.QTextBrowser(self.centralwidget)
         self.logBrowser.setGeometry(QtCore.QRect(10, 670, 331, 311))
@@ -234,10 +241,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.Browser_Total.setGeometry(QtCore.QRect(140, 180, 104, 31))
         self.Browser_Total.setObjectName("Browser_Total")
 
-        #check box - Max_Iter.
-        self.checkBox = QtWidgets.QCheckBox(self.learningGroupBox)
-        self.checkBox.setGeometry(QtCore.QRect(30, 36, 81, 20))
-        self.checkBox.setObjectName("checkBox")
+
         #font
         font = QtGui.QFont()
         font.setFamily("새굴림")
@@ -252,9 +256,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.label_MaxIF = QtWidgets.QLabel(self.learningGroupBox)
         self.label_MaxIF.setGeometry(QtCore.QRect(10, 122, 61, 20))
         self.label_MaxIF.setObjectName("label_MaxIF")
-        self.label_K = QtWidgets.QLabel(self.classificationGroupBox)
-        self.label_K.setGeometry(QtCore.QRect(20, 180, 21, 21))
-        self.label_K.setObjectName("label_K")
+
         self.label_DName = QtWidgets.QLabel(self.StatusBox)
         self.label_DName.setGeometry(QtCore.QRect(30, 30, 121, 31))
         self.label_DName.setObjectName("label_DName")
@@ -332,13 +334,13 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 
 
 
-        self.radioButton_WriteAllSamples.clicked.connect(self.rdobtn_clicked)
+
         # self.radioButton_DeepRBF.clicked.connect(self.rdobtn_clicked)
         #==========spinBox===================
-        self.spinBox_maxif.valueChanged.connect(self.spinBoxChanged)
+
         self.spinBox_SimuNMnK.valueChanged.connect(self.spinBoxChanged)
-        self.spinBox_Iter.valueChanged.connect(self.spinBoxChanged)
-        self.spinBox_Kvalue.valueChanged.connect(self.spin_value)
+
+
         # checkBox
         #self.checkBox.stateChanged.connect(self.rdobtn_clicked)
 
@@ -347,25 +349,34 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Pre-Simulator"))
         self.label_log.setText(_translate("MainWindow", "Log"))
-        self.learningGroupBox.setTitle(_translate("MainWindow", "RBF Learning Option"))
-        self.label_MinIF.setText(_translate("MainWindow", "MinIF"))
-        self.label_MaxIF.setText(_translate("MainWindow", "MaxIF"))
-        self.radioButton_Iterative.setText(_translate("MainWindow", "Iterative"))
-        self.checkBox.setText(_translate("MainWindow", "Max_Iter."))
+
+        self.learningGroupBox.setTitle(_translate("MainWindow", "Learning Options"))
+        # learning options
+        self.radioButton_learning1.setText(_translate("MainWindow", "PARTS_WRONG"))
+        self.radioButton_learning2.setText(_translate("MainWindow", "PARTS_NONE"))
+        self.radioButton_learning3.setText(_translate("MainWindow", "SOLDERING_NONE"))
+        self.radioButton_learning4.setText(_translate("MainWindow", "SOLDERING_LITTLE"))
+        self.radioButton_learning5.setText(_translate("MainWindow", "SOLDERING_OVER"))
+        self.radioButton_learning6.setText(_translate("MainWindow", "MARKING"))
+        self.radioButton_learning7.setText(_translate("MainWindow", "CIRCUIT_SHORT"))
+        self.radioButton_learning8.setText(_translate("MainWindow", "PARTS_CRACK"))
+        self.radioButton_learning9.setText(_translate("MainWindow", "SOLDERING_CRACK"))
+        self.radioButton_learning10.setText(_translate("MainWindow", "PARTS_REVERSE"))
         self.pushButton_Learn.setText(_translate("MainWindow", "Learn"))
-        self.radioButton_WriteAllSamples.setText(_translate("MainWindow", "Write all samples"))
-        # self.radioButton_DeepRBF.setText(_translate("MainWindow", "Deep RBF"))
-        self.classificationGroupBox.setTitle(_translate("MainWindow", "Classification Option"))
-        self.radioButton_Classify1.setText(_translate("MainWindow", "RBF - Best match"))
-        self.radioButton_Classify2.setText(_translate("MainWindow", "RBF - Dominant"))
-        self.radioButton_Classify3.setText(_translate("MainWindow", "RBF - Unanimity"))
-        self.radioButton_Classify4.setText(_translate("MainWindow", "RBF - Min consensus of"))
-        self.radioButton_Classify5.setText(_translate("MainWindow", "KNN - Best match"))
-        self.radioButton_Classify6.setText(_translate("MainWindow", "KNN - Dominant"))
-        self.radioButton_Classify7.setText(_translate("MainWindow", "KNN - Unanimity"))
-        self.radioButton_Classify8.setText(_translate("MainWindow", "KNN - Min consensus of"))
-        self.label_K.setText(_translate("MainWindow", "K"))
-        self.pushButton_Classify.setText(_translate("MainWindow", "Classify"))
+
+        self.classificationGroupBox.setTitle(_translate("MainWindow", "Inspection Options"))
+        #inspection options
+        self.radioButton_Classify1.setText(_translate("MainWindow", "PARTS_WRONG"))
+        self.radioButton_Classify2.setText(_translate("MainWindow", "PARTS_NONE"))
+        self.radioButton_Classify3.setText(_translate("MainWindow", "SOLDERING_NONE"))
+        self.radioButton_Classify4.setText(_translate("MainWindow", "SOLDERING_LITTLE"))
+        self.radioButton_Classify5.setText(_translate("MainWindow", "SOLDERING_OVER"))
+        self.radioButton_Classify6.setText(_translate("MainWindow", "MARKING"))
+        self.radioButton_Classify7.setText(_translate("MainWindow", "CIRCUIT_SHORT"))
+        self.radioButton_Classify8.setText(_translate("MainWindow", "PARTS_CRACK"))
+        self.radioButton_Classify9.setText(_translate("MainWindow", "SOLDERING_CRACK"))
+        self.radioButton_Classify10.setText(_translate("MainWindow", "PARTS_REVERSE"))
+        self.pushButton_Classify.setText(_translate("MainWindow", "Inspection"))
         # self.pushButton_Exit.setText(_translate("MainWindow", "Exit"))
         self.StatusBox.setTitle(_translate("MainWindow", "Status"))
         self.label_DName.setText(_translate("MainWindow", "Data Filename"))
@@ -549,10 +560,6 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.Browser_UNCi.clear()
         self.Browser_UNK.clear()
         self.Browser_Total.clear()
-
-        self.capture()
-
-
 
     def spinBoxChanged(self):
         self.NMnKvalue = self.spinBox_SimuNMnK.value()
