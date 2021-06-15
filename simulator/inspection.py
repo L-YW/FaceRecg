@@ -49,9 +49,6 @@ class inspection:
 
         img_good = cv2.imread('./' + b_name + '/' + p_name + '_' + '0' + '.jpg')
         img_insp = cv2.imread(dataPath)
-        time = 0;
-        corr1 = 0;
-        corr2 = 0
 
         # 검사 및 정상 이미지가 잘 로드 되었는지 확인하는 부분
         if self.check_imread(img_good, "Normal image") is False:
@@ -65,7 +62,7 @@ class inspection:
         if self.check_file_over_10kb(dataPath, "Inspection image") is False:
             return [str(False), str(0)]
 
-            # =====================================================================================================================
+        # =====================================================================================================================
         #  정상이미지와 검사 이미지의 corr1 값 구하기
         # =====================================================================================================================
         img_insp = img_insp[y1:y2, x1:x2]
