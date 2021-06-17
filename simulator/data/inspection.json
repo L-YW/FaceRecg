@@ -1,0 +1,130 @@
+{
+    "Objective": "Component Inspection",
+    "Board Name": "hc-06",
+    "Algorithm": [
+        {
+            "color": [],
+            "corner": []
+        },
+        {
+            "color": [
+                {
+                    "part_id": "10002311",
+                    "number of neurons": 512,
+                    "vector length": 64,
+                    "accuracy": "93"
+                }
+            ]
+        },
+        {
+            "color": [
+                {
+                    "part_id": "10002312",
+                    "number of neurons": 512,
+                    "vector length": 64,
+                    "accuracy": "90"
+                }
+            ]
+        },
+        {
+            "corner": [
+                {
+                    "part_id": "10002311",
+                    "number of neurons": 512,
+                    "vector length": 64,
+                    "accuracy": "64"
+                }
+            ]
+        },
+        {
+            "corner": [
+                {
+                    "part_id": "10002312",
+                    "number of neurons": 512,
+                    "vector length": 64,
+                    "accuracy": "87"
+                }
+            ]
+        },
+        {
+            "color": [
+                {
+                    "part_id": "10002311",
+                    "number of neurons": 256.0,
+                    "vector length": 128,
+                    "accuracy": "91"
+                }
+            ]
+        },
+        {
+            "color": [
+                {
+                    "part_id": "10002312",
+                    "number of neurons": 256.0,
+                    "vector length": 128,
+                    "accuracy": "94"
+                }
+            ]
+        },
+        {
+            "corner": [
+                {
+                    "part_id": "10002311",
+                    "number of neurons": 256.0,
+                    "vector length": 128,
+                    "accuracy": "91"
+                }
+            ]
+        },
+        {
+            "corner": [
+                {
+                    "part_id": "10002312",
+                    "number of neurons": 256.0,
+                    "vector length": 128,
+                    "accuracy": "58"
+                }
+            ]
+        },
+        {
+            "color": [
+                {
+                    "part_id": "10002311",
+                    "number of neurons": 128.0,
+                    "vector length": 256,
+                    "accuracy": "62"
+                }
+            ]
+        },
+        {
+            "color": [
+                {
+                    "part_id": "10002312",
+                    "number of neurons": 128.0,
+                    "vector length": 256,
+                    "accuracy": "68"
+                }
+            ]
+        },
+        {
+            "color": [
+                {
+                    "part_id": "10002311",
+                    "number of neurons": 64.0,
+                    "vector length": 512,
+                    "accuracy": "83"
+                }
+            ]
+        },
+        {
+            "color": [
+                {
+                    "part_id": "10002312",
+                    "number of neurons": 64.0,
+                    "vector length": 512,
+                    "accuracy": "58"
+                }
+            ]
+        }
+    ]
+}
