@@ -109,6 +109,7 @@ def HistCompareMissing_Equalized (img1, img2, kmean=0, showPlt=False) :
 
     return __HistCompare(hists[0], hists[1])
 
+
 def __TestFunction() :
     img_ic_good = cv2.imread('../data/alpha_good_U11.jpg')
     img_ic_bad = cv2.imread('../data/alpha_bad_U11.jpg')

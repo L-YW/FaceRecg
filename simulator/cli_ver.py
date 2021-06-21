@@ -1,11 +1,9 @@
 import os
 import json
 import random
-import inspection
 import cv2
 import calcMissing as hist
 
-ic = inspection.inspection()
 b_name = ''
 p_name = ''
 
@@ -34,6 +32,11 @@ def DoInspection(learn_data_list_jpeg, insp_data_list_jpeg):
 
 
 def DoInspection_good(learn_data_list_jpeg, insp_data_list_jpeg):
+    learn_file_path = './data/learn/'
+    insp_file_path = './data/inspection/'
+    learn_data_list_jpeg = learn_file_path + learn_data_list_jpeg
+    insp_data_list_jpeg = insp_file_path + insp_data_list_jpeg
+
     img_good = cv2.imread(learn_data_list_jpeg)
     img_insp = cv2.imread(insp_data_list_jpeg)
 
@@ -46,7 +49,7 @@ def DoInspection_good(learn_data_list_jpeg, insp_data_list_jpeg):
     # =====================================================================================================================
     #  정상이미지와 검사 이미지의 corr1 값 구하기
     # =====================================================================================================================
-    corr1 = hist.HistCompareMissing_Equalized(img_good, img_insp)
+    corr1 = hist.HistCompareMissing(img_good, img_insp)
 
     return corr1
 
@@ -64,7 +67,7 @@ def DoInspection_bad(learn_data_list_jpeg, insp_file_list_jpeg):
     #  불량 이미지가 학습 되어있을 경우, 불량 이미지와 검사 이미지의 corr2값을 구함
     # =====================================================================================================================
     if img_bad is not None:
-        corr2 = hist.HistCompareMissing_Equalized(img_bad, img_insp)
+        corr2 = hist.HistCompareMissing(img_bad, img_insp)
         return corr2
 
 def compareCorr(corr1, corr2):
@@ -161,8 +164,7 @@ if __name__ == '__main__':
         print("Board_id", "Part_id", "Algorithm", "Accuracy", sep="  ")
         for i in range(0, len(insp_result_accuracy)):
             p_id = i+10002311
-            #acc = insp_result_accuracy[i]*100
-            acc = random.randrange(58, 99)
+            acc = int(insp_result_accuracy[i]*100)
             SaveJson('color', str(p_id), neurons, vector, str(acc))
             print(b_name, p_id, 'color', acc, sep="     ")
         if neurons > 128:
