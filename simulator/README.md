@@ -19,10 +19,10 @@ PCB 검사 시뮬레이션 실행 할 경우 옵션들에 대한 설명
 - 파일 상세 경로는 다음과 같음
 
   학습) [*BOARD ID*] \ [*LEARN*] \ [*PART ID*] \ [*JPEG FILE*]  
-    ex) HC-06\learn\1871\13.jpg  
+    ex) ```HC-06\learn\1871\13.jpeg```  
       
   검사) [*BOARD ID*] \ [*CLASSIFY*] \ [*PART ID*] \ [*JPEG FILE*]  
-    ex) HC-06\classify\1871\13.jpg  
+    ex) ```HC-06\classify\1871\13.jpeg```  
 - [BOARD ID] 이후의 경로는 입력하지 않아도 학습/검사가 모두 이루어짐
 
 - 파일 확장자 : **JPEG**
