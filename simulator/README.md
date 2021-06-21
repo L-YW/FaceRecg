@@ -1,6 +1,6 @@
 ### Synopsis
 
-*python file* [*FILE PATH*] [*BOARD ID*]
+./inspection.py [*FILE PATH*] [*BOARD ID*]
 
 ### Description
 
@@ -166,7 +166,7 @@ Board_id  Part_id  Algorithm  Accuracy
 }
 ```
 
-####    Simulator Example
+#### Simulator UI Example
 
 ![Simulator example](https://user-images.githubusercontent.com/35215836/121492267-b2537200-ca11-11eb-85e0-0feef1e28eb7.png)
 ![image](https://user-images.githubusercontent.com/35215836/121494350-a10b6500-ca13-11eb-9c73-d4dc0202f10d.png)
