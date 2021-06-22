@@ -50,7 +50,7 @@
             "color": [
                 {
                     "part_id": "10002311",
-                    "number of neurons": 256.0,
+                    "number of neurons": 256,
                     "vector length": 64,
                     "accuracy": "98"
                 }
@@ -60,7 +60,7 @@
             "color": [
                 {
                     "part_id": "10002312",
-                    "number of neurons": 256.0,
+                    "number of neurons": 256,
                     "vector length": 64,
                     "accuracy": "24"
                 }
@@ -70,7 +70,7 @@
             "corner": [
                 {
                     "part_id": "10002311",
-                    "number of neurons": 256.0,
+                    "number of neurons": 256,
                     "vector length": 64,
                     "accuracy": "10"
                 }
@@ -80,7 +80,7 @@
             "corner": [
                 {
                     "part_id": "10002312",
-                    "number of neurons": 256.0,
+                    "number of neurons": 256,
                     "vector length": 64,
                     "accuracy": "1"
                 }
@@ -90,7 +90,7 @@
             "color": [
                 {
                     "part_id": "10002311",
-                    "number of neurons": 128.0,
+                    "number of neurons": 128,
                     "vector length": 128,
                     "accuracy": "98"
                 }
@@ -100,7 +100,7 @@
             "color": [
                 {
                     "part_id": "10002312",
-                    "number of neurons": 128.0,
+                    "number of neurons": 128,
                     "vector length": 128,
                     "accuracy": "24"
                 }
@@ -110,7 +110,7 @@
             "color": [
                 {
                     "part_id": "10002311",
-                    "number of neurons": 64.0,
+                    "number of neurons": 64,
                     "vector length": 256,
                     "accuracy": "98"
                 }
@@ -120,7 +120,7 @@
             "color": [
                 {
                     "part_id": "10002312",
-                    "number of neurons": 64.0,
+                    "number of neurons": 64,
                     "vector length": 256,
                     "accuracy": "24"
                 }

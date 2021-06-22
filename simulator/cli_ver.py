@@ -205,6 +205,6 @@ if __name__ == '__main__':
                 acc = int(cor_insp_result_accuracy[1][i])
                 SaveJson('corner', str(p_id), neurons, vector, str(acc))
                 print(b_name, p_id, 'corner', acc, sep="     ")
-        neurons = neurons/2
-        vector = vector*2
+        neurons = int(neurons/2)
+        vector = int(vector*2)
         case_num = case_num + 1
