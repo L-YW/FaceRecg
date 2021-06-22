@@ -3,45 +3,70 @@ import json
 import random
 import cv2
 import calcMissing as hist
+import corner
 
 b_name = ''
 p_name = ''
 
 def importDataset(file_path, b_name):
-
+    path = []
     # 학습 경로 데이터 불러오기
-    learn_file_path = './data/learn/'
+    learn_file_path = './' + file_path + 'learn/'
+
     learn_data_list = os.listdir(learn_file_path)
     learn_data_list_jpeg = [file for file in learn_data_list if file.endswith('.jpg')]
+    path.append(learn_file_path)
 
     # 검사 경로 데이터 불러오기
-    insp_file_path = './data/inspection/'
+    insp_file_path = './' + file_path + 'inspection/'
     insp_data_list = os.listdir(insp_file_path)
     insp_data_list_jpeg = [file for file in insp_data_list if file.endswith('.jpg')]
+    path.append(insp_file_path)
 
-    return learn_data_list_jpeg, insp_data_list_jpeg
+    return learn_data_list_jpeg, insp_data_list_jpeg, path
+
+"""=========================================================================================================================
+    검사 함수 | 이미지를 비교하여 corner 알고리즘으로 검사하는 함수. 
+========================================================================================================================="""
+def DoInspection_corner(learn_data_list_jpeg, insp_data_list_jpeg, path):
+    accuracy = []
+
+    for i in range(0, len(insp_data_list_jpeg)):
+        learn_data_jpeg = path[0] + learn_data_list_jpeg[i]
+        insp_data_jpeg = path[1] + insp_data_list_jpeg[i]
+
+        img_good = cv2.imread(learn_data_jpeg, flags=cv2.IMREAD_GRAYSCALE)
+        img_insp = cv2.imread(insp_data_jpeg, flags=cv2.IMREAD_GRAYSCALE)
+
+        # 검사 및 정상 이미지가 잘 로드 되었는지 확인하는 부분
+        if check_imread(img_good, "corner Normal image") is False:
+            return [str(False), str(0)]
+        if check_imread(img_insp, "Inspection image") is False:
+            return [str(False), str(0)]
+
+        acc = corner.calcCorner(img_good, img_insp)
+        accuracy.append(acc)
+    return accuracy
 
 """=========================================================================================================================
     검사 함수 | 이미지를 비교하여 color 알고리즘으로 검사하는 함수. 
 ========================================================================================================================="""
-def DoInspection(learn_data_list_jpeg, insp_data_list_jpeg):
+def DoInspection_color(learn_data_list_jpeg, insp_data_list_jpeg, path):
     insp_result = []
     for i in range(0, len(insp_data_list_jpeg)):
-        insp_result.append(DoInspection_good(learn_data_list_jpeg[i], insp_data_list_jpeg[i]))
+        insp_result.append(DoInspection_good(learn_data_list_jpeg[i], insp_data_list_jpeg[i], path))
     return insp_result
 
 
-def DoInspection_good(learn_data_list_jpeg, insp_data_list_jpeg):
-    learn_file_path = './data/learn/'
-    insp_file_path = './data/inspection/'
-    learn_data_list_jpeg = learn_file_path + learn_data_list_jpeg
-    insp_data_list_jpeg = insp_file_path + insp_data_list_jpeg
+def DoInspection_good(learn_data_list_jpeg, insp_data_list_jpeg, path):
+    learn_data_list_jpeg = path[0] + learn_data_list_jpeg
+    insp_data_list_jpeg = path[1] + insp_data_list_jpeg
 
     img_good = cv2.imread(learn_data_list_jpeg)
     img_insp = cv2.imread(insp_data_list_jpeg)
 
     # 검사 및 정상 이미지가 잘 로드 되었는지 확인하는 부분
-    if check_imread(img_good, "Normal image") is False:
+    if check_imread(img_good, "color Normal image") is False:
         return [str(False), str(0)]
     if check_imread(img_insp, "Inspection image") is False:
         return [str(False), str(0)]
@@ -151,26 +176,33 @@ def readJson():
 
 if __name__ == '__main__':
     file_path, b_name = input('경로와 보드이름 입력하세요(띄어쓰기로 구분) : ').split()
-    learn_data, insp_data = importDataset(file_path, b_name)
-    insp_result_accuracy = DoInspection(learn_data, insp_data)
+    learn_data, insp_data, path_list = importDataset(file_path, b_name)
+    col_insp_result_accuracy = DoInspection_color(learn_data, insp_data, path_list)
+    cor_insp_result_accuracy = DoInspection_corner(learn_data, insp_data, path_list)
     InitJson()
     neurons = 512
-    vector = 64
+    vector = 32
     case_num = 1
     while neurons != 32:
         print("--------------------------------------")
         print("case%d) neurons/vectors = '%d / %d'"%(case_num, neurons, vector))
         print("--------------------------------------")
         print("Board_id", "Part_id", "Algorithm", "Accuracy", sep="  ")
-        for i in range(0, len(insp_result_accuracy)):
+        for i in range(0, len(col_insp_result_accuracy)):
             p_id = i+10002311
-            acc = int(insp_result_accuracy[i]*100)
+            acc = int(col_insp_result_accuracy[i]*100)
             SaveJson('color', str(p_id), neurons, vector, str(acc))
             print(b_name, p_id, 'color', acc, sep="     ")
-        if neurons > 128:
-            for i in range(0, len(insp_result_accuracy)):
+        if neurons == 512:
+            for i in range(0, len(cor_insp_result_accuracy)):
                 p_id = i + 10002311
-                acc = random.randrange(58, 99)
+                acc = int(cor_insp_result_accuracy[0][i])
+                SaveJson('corner', str(p_id), neurons, vector, str(acc))
+                print(b_name, p_id, 'corner', acc, sep="     ")
+        if neurons == 256:
+            for i in range(0, len(cor_insp_result_accuracy)):
+                p_id = i + 10002311
+                acc = int(cor_insp_result_accuracy[1][i])
                 SaveJson('corner', str(p_id), neurons, vector, str(acc))
                 print(b_name, p_id, 'corner', acc, sep="     ")
         neurons = neurons/2

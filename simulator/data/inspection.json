@@ -11,7 +11,7 @@
                 {
                     "part_id": "10002311",
                     "number of neurons": 512,
-                    "vector length": 64,
+                    "vector length": 32,
                     "accuracy": "98"
                 }
             ]
@@ -21,7 +21,7 @@
                 {
                     "part_id": "10002312",
                     "number of neurons": 512,
-                    "vector length": 64,
+                    "vector length": 32,
                     "accuracy": "24"
                 }
             ]
@@ -31,8 +31,8 @@
                 {
                     "part_id": "10002311",
                     "number of neurons": 512,
-                    "vector length": 64,
-                    "accuracy": "60"
+                    "vector length": 32,
+                    "accuracy": "86"
                 }
             ]
         },
@@ -41,8 +41,8 @@
                 {
                     "part_id": "10002312",
                     "number of neurons": 512,
-                    "vector length": 64,
-                    "accuracy": "73"
+                    "vector length": 32,
+                    "accuracy": "255"
                 }
             ]
         },
@@ -51,7 +51,7 @@
                 {
                     "part_id": "10002311",
                     "number of neurons": 256.0,
-                    "vector length": 128,
+                    "vector length": 64,
                     "accuracy": "98"
                 }
             ]
@@ -61,7 +61,7 @@
                 {
                     "part_id": "10002312",
                     "number of neurons": 256.0,
-                    "vector length": 128,
+                    "vector length": 64,
                     "accuracy": "24"
                 }
             ]
@@ -71,8 +71,8 @@
                 {
                     "part_id": "10002311",
                     "number of neurons": 256.0,
-                    "vector length": 128,
-                    "accuracy": "89"
+                    "vector length": 64,
+                    "accuracy": "10"
                 }
             ]
         },
@@ -81,8 +81,8 @@
                 {
                     "part_id": "10002312",
                     "number of neurons": 256.0,
-                    "vector length": 128,
-                    "accuracy": "73"
+                    "vector length": 64,
+                    "accuracy": "1"
                 }
             ]
         },
@@ -91,7 +91,7 @@
                 {
                     "part_id": "10002311",
                     "number of neurons": 128.0,
-                    "vector length": 256,
+                    "vector length": 128,
                     "accuracy": "98"
                 }
             ]
@@ -101,7 +101,7 @@
                 {
                     "part_id": "10002312",
                     "number of neurons": 128.0,
-                    "vector length": 256,
+                    "vector length": 128,
                     "accuracy": "24"
                 }
             ]
@@ -111,7 +111,7 @@
                 {
                     "part_id": "10002311",
                     "number of neurons": 64.0,
-                    "vector length": 512,
+                    "vector length": 256,
                     "accuracy": "98"
                 }
             ]
@@ -121,7 +121,7 @@
                 {
                     "part_id": "10002312",
                     "number of neurons": 64.0,
-                    "vector length": 512,
+                    "vector length": 256,
                     "accuracy": "24"
                 }
             ]
