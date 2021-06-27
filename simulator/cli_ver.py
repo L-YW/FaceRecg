@@ -130,7 +130,7 @@ def InitJson():
     data['Algorithm'] = []
     data['Algorithm'].append({
         'color': [],
-        'corner' : []
+        'corner': []
     })
 
     with open(json_path, 'w') as outfile:
@@ -138,31 +138,31 @@ def InitJson():
 
 def SaveJson(algorithm, part_id, neurons, vector, accuracy):
     json_path = "./data/inspection.json"
-    with open(json_path, "r") as json_file :
-        json_data = json.load(json_file)
+    with open(json_path, "r") as json_file:
+        try:
+            json_data = json.load(json_file)
+        except ValueError as e:
+            print('parsing error! error code : {}'.format(e))
+            return None
 
     if algorithm == 'color':
-        json_data['Algorithm'].append({
-            'color': [
-                {
-                    "part_id": part_id,
-                    "number of neurons": neurons,
-                    "vector length": vector,
-                    "accuracy": accuracy
-                }
-            ]
-        })
+        json_data['Algorithm'][0]['color'].append(
+            {
+                "part_id": part_id,
+                "number of neurons": neurons,
+                "vector length": vector,
+                "accuracy": accuracy
+            }
+        )
     else :
-        json_data['Algorithm'].append({
-            'corner': [
-                {
-                    "part_id": part_id,
-                    "number of neurons": neurons,
-                    "vector length": vector,
-                    "accuracy": accuracy
-                }
-            ]
-        })
+        json_data['Algorithm'][0]['corner'].append(
+            {
+                "part_id": part_id,
+                "number of neurons": neurons,
+                "vector length": vector,
+                "accuracy": accuracy
+            }
+        )
 
     with open(json_path, "w") as outfile:
         json.dump(json_data, outfile, indent=4)

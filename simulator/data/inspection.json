@@ -1,11 +1,7 @@
 {
     "Objective": "Component Inspection",
-    "Board Name": "hc-067",
+    "Board Name": "hc-06",
     "Algorithm": [
-        {
-            "color": [],
-            "corner": []
-        },
         {
             "color": [
                 {
@@ -13,116 +9,74 @@
                     "number of neurons": 512,
                     "vector length": 32,
                     "accuracy": "98"
-                }
-            ]
-        },
-        {
-            "color": [
+                },
                 {
                     "part_id": "10002312",
                     "number of neurons": 512,
                     "vector length": 32,
                     "accuracy": "24"
+                },
+                {
+                    "part_id": "10002311",
+                    "number of neurons": 256,
+                    "vector length": 64,
+                    "accuracy": "98"
+                },
+                {
+                    "part_id": "10002312",
+                    "number of neurons": 256,
+                    "vector length": 64,
+                    "accuracy": "24"
+                },
+                {
+                    "part_id": "10002311",
+                    "number of neurons": 128,
+                    "vector length": 128,
+                    "accuracy": "98"
+                },
+                {
+                    "part_id": "10002312",
+                    "number of neurons": 128,
+                    "vector length": 128,
+                    "accuracy": "24"
+                },
+                {
+                    "part_id": "10002311",
+                    "number of neurons": 64,
+                    "vector length": 256,
+                    "accuracy": "98"
+                },
+                {
+                    "part_id": "10002312",
+                    "number of neurons": 64,
+                    "vector length": 256,
+                    "accuracy": "24"
                 }
-            ]
-        },
-        {
+            ],
             "corner": [
                 {
                     "part_id": "10002311",
                     "number of neurons": 512,
                     "vector length": 32,
                     "accuracy": "86"
-                }
-            ]
-        },
-        {
-            "corner": [
+                },
                 {
                     "part_id": "10002312",
                     "number of neurons": 512,
                     "vector length": 32,
                     "accuracy": "82"
-                }
-            ]
-        },
-        {
-            "color": [
-                {
-                    "part_id": "10002311",
-                    "number of neurons": 256,
-                    "vector length": 64,
-                    "accuracy": "98"
-                }
-            ]
-        },
-        {
-            "color": [
-                {
-                    "part_id": "10002312",
-                    "number of neurons": 256,
-                    "vector length": 64,
-                    "accuracy": "24"
-                }
-            ]
-        },
-        {
-            "corner": [
+                },
                 {
                     "part_id": "10002311",
                     "number of neurons": 256,
                     "vector length": 64,
                     "accuracy": "10"
-                }
-            ]
-        },
-        {
-            "corner": [
+                },
                 {
                     "part_id": "10002312",
                     "number of neurons": 256,
                     "vector length": 64,
                     "accuracy": "0"
-                }
-            ]
-        },
-        {
-            "color": [
-                {
-                    "part_id": "10002311",
-                    "number of neurons": 128,
-                    "vector length": 128,
-                    "accuracy": "98"
-                }
-            ]
-        },
-        {
-            "color": [
-                {
-                    "part_id": "10002312",
-                    "number of neurons": 128,
-                    "vector length": 128,
-                    "accuracy": "24"
-                }
-            ]
-        },
-        {
-            "color": [
-                {
-                    "part_id": "10002311",
-                    "number of neurons": 64,
-                    "vector length": 256,
-                    "accuracy": "98"
-                }
-            ]
-        },
-        {
-            "color": [
-                {
-                    "part_id": "10002312",
-                    "number of neurons": 64,
-                    "vector length": 256,
-                    "accuracy": "24"
                 }
             ]
         }
