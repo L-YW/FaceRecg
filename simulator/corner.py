@@ -18,7 +18,6 @@ def calcCorner(img_good, img_insp):
     keypoints_good, descriptors_good = sift.detectAndCompute(img_good, None)
     keypoints_insp, descriptors_insp = sift.detectAndCompute(img_insp, None)
 
-
     BFMatcher = cv2.BFMatcher()
 
     matches = BFMatcher.knnMatch(descriptors_insp, descriptors_good, k=2)
@@ -36,6 +35,7 @@ def calcCorner(img_good, img_insp):
                 good.append([m])
         accuracy.append(len(good)/len(matches)*100)
 
+    good = []
     if len(matches) > 256:
         for m, n in matches[:256]:
             if m.distance < 0.75*n.distance:
