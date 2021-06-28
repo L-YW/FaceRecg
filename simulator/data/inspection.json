@@ -1,6 +1,6 @@
 {
     "Objective": "Component Inspection",
-    "Board Name": "hc-06",
+    "Board Name": "hc-07",
     "Algorithm": [
         {
             "color": [
@@ -64,13 +64,13 @@
                     "part_id": "10002312",
                     "number of neurons": 512,
                     "vector length": 32,
-                    "accuracy": "82"
+                    "accuracy": "10"
                 },
                 {
                     "part_id": "10002311",
                     "number of neurons": 256,
                     "vector length": 64,
-                    "accuracy": "10"
+                    "accuracy": "82"
                 },
                 {
                     "part_id": "10002312",
@@ -79,6 +79,12 @@
                     "accuracy": "0"
                 }
             ]
+        }
+    ],
+    "Best": [
+        {
+            "best case": "case1) neurons/vectors = '512 / 32'",
+            "best algorithm": "color"
         }
     ]
 }

@@ -127,7 +127,7 @@ def check_file_over_10kb(filepath, fileType):
 
 
 def InitJson(file_path):
-    json_path = "../" + file_path + "inspection.json"
+    json_path = "./" + file_path + "inspection.json"
     data = {}
     data['Objective'] = "Component Inspection"
     data['Board Name'] = b_name
@@ -142,7 +142,7 @@ def InitJson(file_path):
         json.dump(data, outfile, indent=4)
 
 def SaveJson(file_path, algorithm, part_id, neurons, vector, accuracy):
-    json_path = "../" + file_path + "inspection.json"
+    json_path = "./" + file_path + "inspection.json"
     with open(json_path, "r") as json_file:
         try:
             json_data = json.load(json_file)
@@ -173,7 +173,8 @@ def SaveJson(file_path, algorithm, part_id, neurons, vector, accuracy):
         json.dump(json_data, outfile, indent=4)
 
 def BestJson(file_path, case, algorithm):
-    json_path = "../" + file_path + "inspection.json"
+    json_path = "./" + file_path + "inspection.json"
+
     with open(json_path, "r") as json_file:
         try:
             json_data = json.load(json_file)
@@ -192,7 +193,7 @@ def BestJson(file_path, case, algorithm):
 
 
 def readJson(file_path):
-    json_path = "../" + file_path + "inspection.json"
+    json_path = "./" + file_path + "inspection.json"
     with open(json_path, "r") as json_file :
         json_data = json.load(json_file)
     return json_data
