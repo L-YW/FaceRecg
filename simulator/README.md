@@ -90,6 +90,11 @@ Board_id  Part_id  Algorithm  Accuracy
  HC-06      1873      Color      90
  HC-06      1874      Color      68
  ...
+ 
+---------------------------------------
+best case : case1) neurons/vectors = " 512 / 32 "
+best algorithm : color
+---------------------------------------
 ```
 
 ####   JSON Example
@@ -164,6 +169,10 @@ Board_id  Part_id  Algorithm  Accuracy
       }
     ]
   ]
+  "Best": {
+    "best case": "case1) neurons/vectors = '512 / 32'"
+    "best algorithm": "color"
+  }
 }
 ```
 
