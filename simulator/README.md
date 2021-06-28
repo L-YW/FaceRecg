@@ -18,18 +18,18 @@ PCB 검사 시뮬레이션 실행 할 경우 옵션들에 대한 설명
 ```
 - 파일 상세 경로는 다음과 같음
 
-  학습) [*BOARD ID*] \ [*LEARN*] \ [*JPEG FILE*]  
-    ex) ```HC-06\learn\13.jpeg```  
+  학습) [*BOARD ID*] \ [*LEARN*] \ [*JPG FILE*]  
+    ex) ```HC-06\learn\13.jpg```  
       
-  검사) [*BOARD ID*] \ [*INSPECTION*] \ [*JPEG FILE*]  
-    ex) ```HC-06\inspection\13.jpeg```  
+  검사) [*BOARD ID*] \ [*INSPECTION*] \ [*JPG FILE*]  
+    ex) ```HC-06\inspection\13.jpg```  
 - [BOARD ID] 이후의 경로는 입력하지 않아도 학습/검사가 모두 이루어짐
 
 - 파일 확장자 : **JPEG**
 - 파일 이름 지정 규칙 : [*PART ID*].jpeg  
-  - 이미지 파일 이름 예시/규칙 : ```3.jpeg```/정수로 표현  
+  - 이미지 파일 이름 예시/규칙 : ```3.jpg```/정수로 표현  
 - 파일 이름이 부품을 나타내기 때문에 이름이 같은 이미지끼리 즉, 같은 부품끼리 1대1 검사  
-  - ex) learning 폴더의 13.jpg 파일(```HC-06\learn\1871\13.jpeg```)과 inspection 폴더의 13.jpg 파일(```HC-06\inspection\1871\13.jpeg```)을 1대1로 검사    
+  - ex) learning 폴더의 13.jpg 파일(```HC-06\learn\1871\13.jpg```)과 inspection 폴더의 13.jpg 파일(```HC-06\inspection\1871\13.jpg```)을 1대1로 검사    
 ### Output
 
 - 뉴런 수와 벡터 길이가 서로 다른 4가지 모드를 검사하고 출력
