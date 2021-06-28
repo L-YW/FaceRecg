@@ -82,23 +82,6 @@ def DoInspection_good(learn_data_list_jpeg, insp_data_list_jpeg, path):
 
     return corr1
 
-def DoInspection_bad(learn_data_list_jpeg, insp_file_list_jpeg):
-    # 불량 이미지 로드
-    img_bad = cv2.imread(learn_data_list_jpeg)
-    img_insp = cv2.imread(insp_file_list_jpeg)
-
-    if check_imread(img_bad, "Error image") is False:
-        return [str(False), str(0)]
-    if check_imread(img_insp, "Inspection image") is False:
-        return [str(False), str(0)]
-
-    # =====================================================================================================================
-    #  불량 이미지가 학습 되어있을 경우, 불량 이미지와 검사 이미지의 corr2값을 구함
-    # =====================================================================================================================
-    if img_bad is not None:
-        corr2 = color.HistCompareMissing(img_bad, img_insp)
-        return corr2
-
 def compareCorr(corr1, corr2):
     result_inspection = True if corr1 > corr2 else False
     return [str(result_inspection), str(random.uniform(0.30, 0.38))]
@@ -220,19 +203,19 @@ if __name__ == '__main__':
         print("--------------------------------------")
         print("Board_id", "Part_id", "Algorithm", "Accuracy", sep="  ")
         for i in range(0, len(col_insp_result_accuracy)):
-            p_id = i+10002311
+            p_id = insp_data[i][:-4]
             acc = int(col_insp_result_accuracy[i]*100)
             SaveJson(file_path, 'color', str(p_id), neurons, vector, str(acc))
             print(b_name, p_id, 'color', acc, sep="     ")
         if neurons == 512:
             for i in range(0, len(cor_insp_result_accuracy[0])):
-                p_id = i + 10002311
+                p_id = insp_data[i][:-4]
                 acc = int(cor_insp_result_accuracy[0][i])
                 SaveJson(file_path, 'corner', str(p_id), neurons, vector, str(acc))
                 print(b_name, p_id, 'corner', acc, sep="     ")
         if neurons == 256:
             for i in range(0, len(cor_insp_result_accuracy[1])):
-                p_id = i + 10002311
+                p_id = insp_data[i][:-4]
                 acc = int(cor_insp_result_accuracy[1][i])
                 SaveJson(file_path, 'corner', str(p_id), neurons, vector, str(acc))
                 print(b_name, p_id, 'corner', acc, sep="     ")

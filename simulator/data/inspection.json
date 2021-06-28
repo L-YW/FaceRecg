@@ -1,53 +1,53 @@
 {
     "Objective": "Component Inspection",
-    "Board Name": "hc-07",
+    "Board Name": "hc-01",
     "Algorithm": [
         {
             "color": [
                 {
-                    "part_id": "10002311",
+                    "part_id": "1",
                     "number of neurons": 512,
                     "vector length": 32,
                     "accuracy": "98"
                 },
                 {
-                    "part_id": "10002312",
+                    "part_id": "2",
                     "number of neurons": 512,
                     "vector length": 32,
                     "accuracy": "24"
                 },
                 {
-                    "part_id": "10002311",
+                    "part_id": "1",
                     "number of neurons": 256,
                     "vector length": 64,
                     "accuracy": "98"
                 },
                 {
-                    "part_id": "10002312",
+                    "part_id": "2",
                     "number of neurons": 256,
                     "vector length": 64,
                     "accuracy": "24"
                 },
                 {
-                    "part_id": "10002311",
+                    "part_id": "1",
                     "number of neurons": 128,
                     "vector length": 128,
                     "accuracy": "98"
                 },
                 {
-                    "part_id": "10002312",
+                    "part_id": "2",
                     "number of neurons": 128,
                     "vector length": 128,
                     "accuracy": "24"
                 },
                 {
-                    "part_id": "10002311",
+                    "part_id": "1",
                     "number of neurons": 64,
                     "vector length": 256,
                     "accuracy": "98"
                 },
                 {
-                    "part_id": "10002312",
+                    "part_id": "2",
                     "number of neurons": 64,
                     "vector length": 256,
                     "accuracy": "24"
@@ -55,25 +55,25 @@
             ],
             "corner": [
                 {
-                    "part_id": "10002311",
+                    "part_id": "1",
                     "number of neurons": 512,
                     "vector length": 32,
                     "accuracy": "86"
                 },
                 {
-                    "part_id": "10002312",
+                    "part_id": "2",
                     "number of neurons": 512,
                     "vector length": 32,
                     "accuracy": "10"
                 },
                 {
-                    "part_id": "10002311",
+                    "part_id": "1",
                     "number of neurons": 256,
                     "vector length": 64,
                     "accuracy": "82"
                 },
                 {
-                    "part_id": "10002312",
+                    "part_id": "2",
                     "number of neurons": 256,
                     "vector length": 64,
                     "accuracy": "0"
