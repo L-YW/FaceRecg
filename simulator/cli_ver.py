@@ -2,7 +2,7 @@ import os
 import json
 import random
 import cv2
-import calcMissing as hist
+import color
 import corner
 
 b_name = ''
@@ -74,7 +74,7 @@ def DoInspection_good(learn_data_list_jpeg, insp_data_list_jpeg, path):
     # =====================================================================================================================
     #  정상이미지와 검사 이미지의 corr1 값 구하기
     # =====================================================================================================================
-    corr1 = hist.HistCompareMissing(img_good, img_insp)
+    corr1 = color.HistCompareMissing(img_good, img_insp)
 
     return corr1
 
@@ -92,7 +92,7 @@ def DoInspection_bad(learn_data_list_jpeg, insp_file_list_jpeg):
     #  불량 이미지가 학습 되어있을 경우, 불량 이미지와 검사 이미지의 corr2값을 구함
     # =====================================================================================================================
     if img_bad is not None:
-        corr2 = hist.HistCompareMissing(img_bad, img_insp)
+        corr2 = color.HistCompareMissing(img_bad, img_insp)
         return corr2
 
 def compareCorr(corr1, corr2):
