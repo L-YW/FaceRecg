@@ -123,7 +123,7 @@ def check_file_over_10kb(filepath, fileType):
 
 
 def InitJson():
-    json_path = "./data/inspection.json"
+    json_path = "../data/inspection.json"
     data = {}
     data['Objective'] = "Component Inspection"
     data['Board Name'] = b_name
@@ -137,7 +137,7 @@ def InitJson():
         json.dump(data, outfile, indent=4)
 
 def SaveJson(algorithm, part_id, neurons, vector, accuracy):
-    json_path = "./data/inspection.json"
+    json_path = "../data/inspection.json"
     with open(json_path, "r") as json_file:
         try:
             json_data = json.load(json_file)
