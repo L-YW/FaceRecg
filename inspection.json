@@ -83,7 +83,7 @@
     ],
     "Best": [
         {
-            "best case": "best case : case1) neurons/vectors = '512 / 32'",
+            "best case": "case1) neurons/vectors = '512 / 32'",
             "best algorithm": "color"
         }
     ]

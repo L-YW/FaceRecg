@@ -126,8 +126,8 @@ def check_file_over_10kb(filepath, fileType):
     return True
 
 
-def InitJson():
-    json_path = "../inspection.json"
+def InitJson(file_path):
+    json_path = "../" + file_path + "inspection.json"
     data = {}
     data['Objective'] = "Component Inspection"
     data['Board Name'] = b_name
@@ -141,8 +141,8 @@ def InitJson():
     with open(json_path, 'w') as outfile:
         json.dump(data, outfile, indent=4)
 
-def SaveJson(algorithm, part_id, neurons, vector, accuracy):
-    json_path = "../inspection.json"
+def SaveJson(file_path, algorithm, part_id, neurons, vector, accuracy):
+    json_path = "../" + file_path + "inspection.json"
     with open(json_path, "r") as json_file:
         try:
             json_data = json.load(json_file)
@@ -172,8 +172,8 @@ def SaveJson(algorithm, part_id, neurons, vector, accuracy):
     with open(json_path, 'w') as outfile:
         json.dump(json_data, outfile, indent=4)
 
-def BestJson(case, algorithm):
-    json_path = "../inspection.json"
+def BestJson(file_path, case, algorithm):
+    json_path = "../" + file_path + "inspection.json"
     with open(json_path, "r") as json_file:
         try:
             json_data = json.load(json_file)
@@ -191,8 +191,8 @@ def BestJson(case, algorithm):
         json.dump(json_data, outfile, indent=4)
 
 
-def readJson():
-    json_path = "../inspecion.json"
+def readJson(file_path):
+    json_path = "../" + file_path + "inspection.json"
     with open(json_path, "r") as json_file :
         json_data = json.load(json_file)
     return json_data
@@ -209,7 +209,7 @@ if __name__ == '__main__':
     sum_cor_256 = sum(cor_insp_result_accuracy[1])
 
     sum_cor = sum_cor_512 + sum_cor_256
-    InitJson()
+    InitJson(file_path)
     neurons = 512
     vector = 32
     case_num = 1
@@ -221,19 +221,19 @@ if __name__ == '__main__':
         for i in range(0, len(col_insp_result_accuracy)):
             p_id = i+10002311
             acc = int(col_insp_result_accuracy[i]*100)
-            SaveJson('color', str(p_id), neurons, vector, str(acc))
+            SaveJson(file_path, 'color', str(p_id), neurons, vector, str(acc))
             print(b_name, p_id, 'color', acc, sep="     ")
         if neurons == 512:
             for i in range(0, len(cor_insp_result_accuracy[0])):
                 p_id = i + 10002311
                 acc = int(cor_insp_result_accuracy[0][i])
-                SaveJson('corner', str(p_id), neurons, vector, str(acc))
+                SaveJson(file_path, 'corner', str(p_id), neurons, vector, str(acc))
                 print(b_name, p_id, 'corner', acc, sep="     ")
         if neurons == 256:
             for i in range(0, len(cor_insp_result_accuracy[1])):
                 p_id = i + 10002311
                 acc = int(cor_insp_result_accuracy[1][i])
-                SaveJson('corner', str(p_id), neurons, vector, str(acc))
+                SaveJson(file_path, 'corner', str(p_id), neurons, vector, str(acc))
                 print(b_name, p_id, 'corner', acc, sep="     ")
         neurons = int(neurons/2)
         vector = int(vector*2)
@@ -242,23 +242,23 @@ if __name__ == '__main__':
     algorithm = ""
     print("-------------------------------------------------")
     if sum_col > sum_cor:
-        case = "best case : case1) neurons/vectors = '512 / 32'"
+        case = "case1) neurons/vectors = '512 / 32'"
         algorithm = "color"
-        print(case)
+        print("best case : ", case)
         print("best algorithm : ", algorithm)
 
     else:
         if sum_cor_512 > sum_cor_256:
-            case = "best case : case1) neurons/vectors = '512 / 32'"
+            case = "case1) neurons/vectors = '512 / 32'"
             algorithm = "corner"
-            print(case)
+            print("best case : ", case)
             print("best algorithm : ", algorithm)
 
         else:
-            case = "best case : case2) neurons/vectors = '256 / 64'"
+            case = "case2) neurons/vectors = '256 / 64'"
             algorithm = "corner"
-            print(case)
+            print("best case : ", case)
             print("best algorithm : ", algorithm)
 
-    BestJson(case, algorithm)
+    BestJson(file_path, case, algorithm)
     print("-------------------------------------------------")
