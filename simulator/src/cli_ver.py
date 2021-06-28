@@ -30,7 +30,8 @@ def importDataset(file_path, b_name):
 ========================================================================================================================="""
 def DoInspection_corner(learn_data_list_jpeg, insp_data_list_jpeg, path):
     accuracy = []
-
+    acc_512 = []
+    acc_256 = []
     for i in range(0, len(insp_data_list_jpeg)):
         learn_data_jpeg = path[0] + learn_data_list_jpeg[i]
         insp_data_jpeg = path[1] + insp_data_list_jpeg[i]
@@ -44,8 +45,11 @@ def DoInspection_corner(learn_data_list_jpeg, insp_data_list_jpeg, path):
         if check_imread(img_insp, "Inspection image") is False:
             return [str(False), str(0)]
 
-        acc = corner.calcCorner(img_good, img_insp)
-        accuracy.append(acc)
+        acc_1, acc_2 = corner.calcCorner(img_good, img_insp)
+        acc_512.append(acc_1)
+        acc_256.append(acc_2)
+    accuracy.append(acc_512)
+    accuracy.append(acc_256)
     return accuracy
 
 """=========================================================================================================================
@@ -123,11 +127,12 @@ def check_file_over_10kb(filepath, fileType):
 
 
 def InitJson():
-    json_path = "../data/inspection.json"
+    json_path = "../inspection.json"
     data = {}
     data['Objective'] = "Component Inspection"
     data['Board Name'] = b_name
     data['Algorithm'] = []
+    data['Best'] = []
     data['Algorithm'].append({
         'color': [],
         'corner': []
@@ -137,7 +142,7 @@ def InitJson():
         json.dump(data, outfile, indent=4)
 
 def SaveJson(algorithm, part_id, neurons, vector, accuracy):
-    json_path = "../data/inspection.json"
+    json_path = "../inspection.json"
     with open(json_path, "r") as json_file:
         try:
             json_data = json.load(json_file)
@@ -164,11 +169,30 @@ def SaveJson(algorithm, part_id, neurons, vector, accuracy):
             }
         )
 
-    with open(json_path, "w") as outfile:
+    with open(json_path, 'w') as outfile:
         json.dump(json_data, outfile, indent=4)
 
+def BestJson(case, algorithm):
+    json_path = "../inspection.json"
+    with open(json_path, "r") as json_file:
+        try:
+            json_data = json.load(json_file)
+        except ValueError as e:
+            print('parsing error! error code : {}'.format(e))
+            return None
+    json_data['Best'].append(
+        {
+            "best case": case,
+            "best algorithm": algorithm
+        }
+    )
+
+    with open(json_path, 'w') as outfile:
+        json.dump(json_data, outfile, indent=4)
+
+
 def readJson():
-    json_path = "./data/inspecion.json"
+    json_path = "../inspecion.json"
     with open(json_path, "r") as json_file :
         json_data = json.load(json_file)
     return json_data
@@ -179,6 +203,12 @@ if __name__ == '__main__':
     learn_data, insp_data, path_list = importDataset(file_path, b_name)
     col_insp_result_accuracy = DoInspection_color(learn_data, insp_data, path_list)
     cor_insp_result_accuracy = DoInspection_corner(learn_data, insp_data, path_list)
+
+    sum_col = sum(col_insp_result_accuracy)*200
+    sum_cor_512 = sum(cor_insp_result_accuracy[0])
+    sum_cor_256 = sum(cor_insp_result_accuracy[1])
+
+    sum_cor = sum_cor_512 + sum_cor_256
     InitJson()
     neurons = 512
     vector = 32
@@ -194,13 +224,13 @@ if __name__ == '__main__':
             SaveJson('color', str(p_id), neurons, vector, str(acc))
             print(b_name, p_id, 'color', acc, sep="     ")
         if neurons == 512:
-            for i in range(0, len(cor_insp_result_accuracy)):
+            for i in range(0, len(cor_insp_result_accuracy[0])):
                 p_id = i + 10002311
                 acc = int(cor_insp_result_accuracy[0][i])
                 SaveJson('corner', str(p_id), neurons, vector, str(acc))
                 print(b_name, p_id, 'corner', acc, sep="     ")
         if neurons == 256:
-            for i in range(0, len(cor_insp_result_accuracy)):
+            for i in range(0, len(cor_insp_result_accuracy[1])):
                 p_id = i + 10002311
                 acc = int(cor_insp_result_accuracy[1][i])
                 SaveJson('corner', str(p_id), neurons, vector, str(acc))
@@ -208,3 +238,27 @@ if __name__ == '__main__':
         neurons = int(neurons/2)
         vector = int(vector*2)
         case_num = case_num + 1
+    case = ""
+    algorithm = ""
+    print("-------------------------------------------------")
+    if sum_col > sum_cor:
+        case = "best case : case1) neurons/vectors = '512 / 32'"
+        algorithm = "color"
+        print(case)
+        print("best algorithm : ", algorithm)
+
+    else:
+        if sum_cor_512 > sum_cor_256:
+            case = "best case : case1) neurons/vectors = '512 / 32'"
+            algorithm = "corner"
+            print(case)
+            print("best algorithm : ", algorithm)
+
+        else:
+            case = "best case : case2) neurons/vectors = '256 / 64'"
+            algorithm = "corner"
+            print(case)
+            print("best algorithm : ", algorithm)
+
+    BestJson(case, algorithm)
+    print("-------------------------------------------------")

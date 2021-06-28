@@ -22,29 +22,30 @@ def calcCorner(img_good, img_insp):
 
     matches = BFMatcher.knnMatch(descriptors_insp, descriptors_good, k=2)
 
-    accuracy = []
+    acc_512 = []
+    acc_256 = []
     good =[]
     if len(matches) > 512:
         for m, n in matches[:512]:
             if m.distance < 0.75*n.distance:
                 good.append([m])
-        accuracy.append(len(good)/512*100)
+        acc_512 = (len(good)/512*100)
     if len(matches) <= 512:
         for m, n in matches:
             if m.distance < 0.75*n.distance:
                 good.append([m])
-        accuracy.append(len(good)/len(matches)*100)
+        acc_512 = (len(good)/len(matches)*100)
 
     good = []
     if len(matches) > 256:
         for m, n in matches[:256]:
             if m.distance < 0.75*n.distance:
                 good.append([m])
-        accuracy.append(len(good)/256*100)
+        acc_256 = (len(good)/256*100)
     if len(matches) <= 256:
         for m, n in matches:
             if m.distance < 0.75*n.distance:
                 good.append([m])
-        accuracy.append(len(good)/256*100)
+        acc_256 = (len(good)/256*100)
 
-    return accuracy
+    return acc_512, acc_256
