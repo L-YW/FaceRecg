@@ -8,27 +8,28 @@ PCB 검사 시뮬레이션 실행 할 경우 옵션들에 대한 설명
 
 ### Input
 
-- *FILE PATH* : 검사할 이미지 데이터 경로 입력 (ex. C:\PCB_inspection\comp_images)
+- *FILE PATH* : 검사할 이미지 데이터 경로 입력 (ex. PCB_inspection/comp_images)
 - *BOARD ID* : 검사할 보드의 종류/명칭 (ex. HC-06)
 
 ####   Input Example
 
 ```
-./inspection.py C:\PCB_inspection\comp_images HC-06
+./inspection.py PCB_inspection/comp_images HC-06
 ```
 - 파일 상세 경로는 다음과 같음
 
-  학습) [*BOARD ID*] \ [*LEARN*] \ [*PART ID*] \ [*JPEG FILE*]  
-    ex) ```HC-06\learn\1871\13.jpeg```  
+  학습) [*BOARD ID*] \ [*LEARN*] \ [*JPEG FILE*]  
+    ex) ```HC-06\learn\13.jpeg```  
       
-  검사) [*BOARD ID*] \ [*CLASSIFY*] \ [*PART ID*] \ [*JPEG FILE*]  
-    ex) ```HC-06\classify\1871\13.jpeg```  
+  검사) [*BOARD ID*] \ [*INSPECTION*] \ [*JPEG FILE*]  
+    ex) ```HC-06\inspection\13.jpeg```  
 - [BOARD ID] 이후의 경로는 입력하지 않아도 학습/검사가 모두 이루어짐
 
 - 파일 확장자 : **JPEG**
-- 파일 이름 지정 규칙 : [*CATEGORY*].jpeg
-  - 오류 이미지 파일 이름 예시/규칙 : ```103.jpeg```/카테고리 100번 이후로 시작은 오류 이미지
-  - 정상 이미지 파일 이름 예시/규칙 : ```3.jpeg```/카테고리 1번부터 시작은 정상 이미지
+- 파일 이름 지정 규칙 : [*PART ID*].jpeg  
+  - 이미지 파일 이름 예시/규칙 : ```3.jpeg```/정수로 표현  
+- 파일 이름이 부품을 나타내기 때문에 이름이 같은 이미지끼리 즉, 같은 부품끼리 1대1 검사  
+  - ex) learning 폴더의 13.jpg 파일(```HC-06\learn\1871\13.jpeg```)과 inspection 폴더의 13.jpg 파일(```HC-06\inspection\1871\13.jpeg```)을 1대1로 검사    
 ### Output
 
 - 뉴런 수와 벡터 길이가 서로 다른 4가지 모드를 검사하고 출력
