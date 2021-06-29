@@ -11,14 +11,14 @@ p_name = ''
 def importDataset(file_path, b_name):
     path = []
     # 학습 경로 데이터 불러오기
-    learn_file_path = './' + file_path + 'learn/'
+    learn_file_path = '../' + file_path + 'learn/'
 
     learn_data_list = os.listdir(learn_file_path)
     learn_data_list_jpeg = [file for file in learn_data_list if file.endswith('.jpg')]
     path.append(learn_file_path)
 
     # 검사 경로 데이터 불러오기
-    insp_file_path = './' + file_path + 'inspection/'
+    insp_file_path = '../' + file_path + 'inspection/'
     insp_data_list = os.listdir(insp_file_path)
     insp_data_list_jpeg = [file for file in insp_data_list if file.endswith('.jpg')]
     path.append(insp_file_path)
@@ -110,7 +110,7 @@ def check_file_over_10kb(filepath, fileType):
 
 
 def InitJson(file_path):
-    json_path = "./" + file_path + "inspection.json"
+    json_path = "../" + file_path + "inspection.json"
     data = {}
     data['Objective'] = "Component Inspection"
     data['Board Name'] = b_name
@@ -125,7 +125,7 @@ def InitJson(file_path):
         json.dump(data, outfile, indent=4)
 
 def SaveJson(file_path, algorithm, part_id, neurons, vector, accuracy):
-    json_path = "./" + file_path + "inspection.json"
+    json_path = "../" + file_path + "inspection.json"
     with open(json_path, "r") as json_file:
         try:
             json_data = json.load(json_file)
@@ -156,7 +156,7 @@ def SaveJson(file_path, algorithm, part_id, neurons, vector, accuracy):
         json.dump(json_data, outfile, indent=4)
 
 def BestJson(file_path, case, algorithm):
-    json_path = "./" + file_path + "inspection.json"
+    json_path = "../" + file_path + "inspection.json"
 
     with open(json_path, "r") as json_file:
         try:
