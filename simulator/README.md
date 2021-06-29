@@ -1,6 +1,7 @@
 ### Synopsis
 
-./inspection.py [*FILE PATH*] [*BOARD ID*]
+./insp_sim
+[*FILE PATH*] [*BOARD ID*]
 
 ### Description
 
@@ -8,13 +9,14 @@ PCB 검사 시뮬레이션 실행 할 경우 옵션들에 대한 설명
 
 ### Input
 
-- *FILE PATH* : 검사할 이미지 데이터 경로 입력 (ex. PCB_inspection/comp_images)
+- *FILE PATH* : 검사할 이미지 데이터 경로 입력 (ex. ../data/)
 - *BOARD ID* : 검사할 보드의 종류/명칭 (ex. HC-06)
 
 ####   Input Example
 
 ```
-./inspection.py PCB_inspection/comp_images HC-06
+$ ./insp_sim
+$ ../data/ HC-06
 ```
 - 파일 상세 경로는 다음과 같음
 
