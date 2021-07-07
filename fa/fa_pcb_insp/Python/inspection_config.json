@@ -1,0 +1,13 @@
+{
+    "marking" :
+    {
+        "K": 7,
+        "H_UPPER" : 10,
+	"SV_LOWER" : 150,
+	"THR_RED" : 200
+    },
+    "parts_wrong" :
+    {
+
+    }
+}
