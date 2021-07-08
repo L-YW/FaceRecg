@@ -7,8 +7,8 @@ import serial
 import time
 
 
-ser = serial.Serial('/dev/ttyUSB0', 115200, timeout=1)
-
+ser = serial.Serial('/dev/serial0', 115200, timeout=1)
+print('ser.name : ', ser.name)
 ## webcam 이미지 capture
 cam = cv2.VideoCapture(0)
 
