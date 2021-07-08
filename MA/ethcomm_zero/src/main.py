@@ -11,7 +11,7 @@ ser = serial.Serial('/dev/serial0', 115200, timeout=1)
 print('ser.name : ', ser.name)
 ## webcam 이미지 capture
 cam = cv2.VideoCapture(0)
-
+print('cam ok')
 ## 이미지 속성 변경 3 = width, 4 = height
 cam.set(3, 320)
 cam.set(4, 240)
