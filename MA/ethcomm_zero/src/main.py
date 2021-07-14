@@ -29,7 +29,6 @@ def input_func():
     if s1 == "s":
         global_dic['counter'] = True
 
-
 def print_result(delay_time, faces):
     print('haar time : ', delay_time, "|| Faces : ", len(faces))
     if global_dic['counter']:
